@@ -230,6 +230,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    //final curScaleFactor = MediaQuery.of(context).textScaleFactor;
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final appBar = builderAppBar() as PreferredSizeWidget;
 
@@ -263,6 +264,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         ),
       ),
     );
+
+    final _floatingActionButton = Platform.isIOS
+        ? Container()
+        : FloatingActionButton(
+            //materialTapTargetSize: MaterialTapTargetSize.padded,
+            child: Icon(Icons.add),
+            onPressed: () => _startAddNewTransaction(context),
+          );
+
     return Platform.isIOS
         ? CupertinoPageScaffold(
             child: pageBody,
@@ -273,14 +283,11 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             appBar: appBar,
             body: pageBody,
             floatingActionButtonLocation:
-                FloatingActionButtonLocation.miniCenterDocked,
-            floatingActionButton: Platform.isIOS
-                ? Container()
-                : FloatingActionButton(
-                    materialTapTargetSize: MaterialTapTargetSize.padded,
-                    child: Icon(Icons.add),
-                    onPressed: () => _startAddNewTransaction(context),
-                  ),
-          );
+                FloatingActionButtonLocation.miniCenterFloat,
+            floatingActionButton: AnimatedOpacity(
+              child: _floatingActionButton,
+              opacity: 1,
+              duration: Duration(seconds: 10),
+            ));
   }
 }
