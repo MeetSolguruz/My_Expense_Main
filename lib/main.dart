@@ -288,6 +288,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
               child: _floatingActionButton,
               opacity: 1,
               duration: Duration(seconds: 10),
-            ));
+            ),
+          );
   }
 }

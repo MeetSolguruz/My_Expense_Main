@@ -19,11 +19,11 @@ class AdaptiveFlatButton extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onPressed: () => handler()
+            onPressed: () => handler(),
             //onPressed: () => {
             //  handler()
             // },Also we can use like this..
-            )
+          )
         : TextButton(
             style: TextButton.styleFrom(
               primary: Theme.of(context).primaryColor,
@@ -32,9 +32,7 @@ class AdaptiveFlatButton extends StatelessWidget {
               text,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            onPressed: () {
-              handler();
-            },
+            onPressed: () => handler(),
           );
   }
 }
